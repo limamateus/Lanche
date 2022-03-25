@@ -1,0 +1,59 @@
+﻿@model Lanche.ViewModels.PedidoProdutoViewModels
+
+
+@{
+
+    ViewData["Title"] = "PedidoProdutos";
+    decimal totalPedido = 0;
+
+}
+
+<h1> Produtos do Pedido </h1>
+
+<h2>Pedido  : @Html.DisplayFor(model =>  model.TbPedido.TbPedidoId)</h2>
+<h2>Cliente : @Html.DisplayFor(model =>  model.TbPedido.Nome)</h2>
+<h2>Data    : @Html.DisplayFor(model =>  model.TbPedido.PedidoEnviado)</h2>
+<h2>Entrega : @Html.DisplayFor(model =>  model.TbPedido.PedidoEntregueEm)</h2>
+
+
+<table class="table">
+
+    @foreach (var item in @Model.TbPedido.TbPedidoItens)
+    {
+
+        totalPedido += (@item.Produto.Preco * @item.Quantidade);
+
+        <tr>
+
+
+            <td align="right">
+                <h2>@Html.DisplayFor(modelItem => item.Produto.Nome)</h2>
+            </td>
+            
+            
+            <td align="right">
+                <img src="@item.Produto.ImagemUrl" class="img-fluid " height="100" width="100">
+            </td>
+            
+            <td align="right">
+                <h2>@string.Format("{0:C}",item.Produto.Preco)</h2>
+            </td>
+            
+            <td align="right">
+                <h2>@Html.DisplayFor(modelItem => item.Quantidade)</h2>
+            </td>
+          </tr>
+        }
+
+        <tr>
+
+            <td colspan="2">&nbsp;</td>
+
+            <td align="right">
+                <h3>Total do Produtos : @string.Format("{0:C}",@totalPedido)</h3>
+
+            </td>
+        </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-outline-info">Retornar </a>

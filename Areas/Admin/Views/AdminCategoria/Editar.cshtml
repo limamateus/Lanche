@@ -1,0 +1,43 @@
+﻿@model Lanche.Models.Categoria
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Editar @ViewData["Title"] </h3>
+
+
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Editar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="CategoriaId" />
+
+            <div class="form-group">
+                <label asp-for="CategoriaNome" class="control-label"></label>
+                <input asp-for="CategoriaNome" class="form-control" />
+
+                <span asp-validation-for="CategoriaNome" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+
+       
+
+            <br />
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+
+</div>

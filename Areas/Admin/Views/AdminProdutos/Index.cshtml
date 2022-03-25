@@ -1,0 +1,94 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Lanche.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Pedidos</h3>
+
+<form method="get" class="inline">
+    <input name="filter" class="form-control" placeholder="filtro"
+    value="@Model.RouteValue["Filter"]" />
+
+    
+    
+    <br />
+    
+    <button type="submit" class="btn btn-info">
+
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+        Procurar
+             
+    </button>
+
+    </form>
+
+    Total de Produtos : @Model.TotalRecordCount
+
+    <div>
+
+        <vc:pager paging-list="@Model"> </vc:pager>
+    </div>
+
+<p>
+    <a asp-action="Criar"> Criar um Produto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.DescricapDetalhada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.ProdutoPreferido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmEstoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricapDetalhada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdutoPreferido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmEstoque)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.Categoria.CategoriaNome)
+            </td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.ProdutoId">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.ProdutoId">Detalhes</a> |
+                <a asp-action="Excluir" asp-route-id="@item.ProdutoId">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

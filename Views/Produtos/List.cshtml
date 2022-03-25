@@ -1,0 +1,18 @@
+﻿@model Lanche.ViewModels.ProdutoListViewModel
+
+<div>
+
+    <h2>
+        @Model.CategoriaAtual
+    </h2>
+</div>
+
+<div class="conteiner">
+<div class="row">
+@foreach (var lanche in Model.Produtos)
+{
+
+   <partial name="_ProdutoResumo" for="@lanche"/>
+   }
+   </div>
+   </div>
